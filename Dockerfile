@@ -12,17 +12,16 @@ COPY ca-trust/*.crt /usr/local/share/ca-certificates/
 RUN update-ca-certificates
 
 #Add executables
-RUN mkdir /usr/libexec/springboot
-COPY ./bin/ /usr/libexec/springboot
-RUN chmod -R 777 /usr/libexec/springboot
+RUN mkdir /opt/openshift
+COPY ./bin/* /opt/openshift/
 
 #Add User & Group to run applications as
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup && mkdir /opt/openshift && chown -R appuser:appgroup /opt/openshift && chmod -R 777 /opt/openshift
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup && chown -R appuser:appgroup /opt/openshift && chmod -R 777 /opt/openshift
 
 #Switch to non-root-user
 USER appuser
 
 WORKDIR "/opt/openshift"
 EXPOSE 8080
-CMD ["/usr/libexec/springboot/usage"]
+CMD ["./usage"]
 
