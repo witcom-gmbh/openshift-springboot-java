@@ -8,8 +8,8 @@ LABEL io.k8s.description="Platform for running Spring Boot applications" \
 
 #Add certificates
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
-COPY ca-trust/*.crt /usr/local/share/ca-certificates/
-RUN update-ca-certificates
+COPY ca-trust/* /usr/local/share/ca-certificates/
+RUN update-ca-certificates && cp -f /etc/ssl/certs/ca-certificates.crt /etc/ssl/cert.pem
 
 #Add executables
 RUN mkdir /opt/openshift
