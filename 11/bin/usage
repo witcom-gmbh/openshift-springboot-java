@@ -1,3 +1,4 @@
+#!/bin/sh
 cat <<EOF
 This is the springboot-java RUNTIME image:
 To use it, extend the image by

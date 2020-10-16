@@ -1,0 +1,8 @@
+#!/bin/sh
+cat <<EOF
+This is the springboot-java RUNTIME image:
+To use it, extend the image by
+* copying the fat-jar to /opt/openshift/app.jar
+* Overriding CMD with /opt/openshift/run
+
+EOF
